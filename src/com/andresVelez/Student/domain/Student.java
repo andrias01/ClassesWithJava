@@ -7,9 +7,13 @@ public class Student {
     public byte schoolYear;
     public String schoolYearType;
     public double performance;
-
     public boolean goodBehevior;
     public boolean badBehevior;
+
+    public Student(String name, byte age) {
+        this.name = name;
+        this.age = age;
+    }
 
     //greet someone o somewhere
     public void greet(String name,byte age,String oneOrMorePersons){
