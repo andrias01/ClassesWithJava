@@ -1,12 +1,18 @@
 package com.andresVelez.bicycle.domain;
 
 public class Bicycle {
-    public long serial; // +serial: long
-    public String brand;
-    public String color;
-    public double speed;
-    public byte currentChange = 1;
-    public byte maxChange = 7;
+    private long serial; // +serial: long
+    private String brand;
+    private String color;
+    private double speed;
+    private byte currentChange = 1;
+    private byte maxChange = 7;
+
+    public Bicycle(long serial, String brand, String color) {
+        this.serial = serial;
+        this.brand = brand;
+        this.color = color;
+    }
 
     // +accelerating(in amount:int)
     public void accelerating(int amount) {
@@ -48,5 +54,41 @@ public class Bicycle {
 
     public String getCurrentSpeed() {
         return "The current speed is " + this.speed + " km/h & the current change is " + this.currentChange;
+    }
+
+    public long getSerial() {
+        return serial;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public byte getCurrentChange() {
+        return currentChange;
+    }
+
+    public byte getMaxChange() {
+        return maxChange;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setCurrentChange(byte currentChange) {
+        this.currentChange = currentChange;
+    }
+
+    public void setMaxChange(byte maxChange) {
+        this.maxChange = maxChange;
     }
 }

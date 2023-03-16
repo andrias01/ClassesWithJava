@@ -13,12 +13,23 @@ public class BankApp {
 
         dianaAccount.deposit(50);
 
-        System.out.println(dianaAccount.getBalance());
-        System.out.println(alvaroAccount.getBalance());
+        System.out.println(dianaAccount.getMessageBalance());
+        System.out.println(alvaroAccount.getMessageBalance());
 
         dianaAccount.transfer(alvaroAccount, 20);
 
-        System.out.println(dianaAccount.getBalance());
-        System.out.println(alvaroAccount.getBalance());
+        System.out.println(dianaAccount.getMessageBalance());
+        System.out.println(alvaroAccount.getMessageBalance());
     }
+
+//    public static void main(String[] args) {
+//        Person alejo = new Person("Alejo");
+//        Person andrea = new Person("Andrea");
+//
+//        andrea = alejo;
+//        andrea.name = "Gregorio";
+//
+//        System.out.println(alejo.name);
+//        System.out.println(andrea.name);
+//    }
 }
