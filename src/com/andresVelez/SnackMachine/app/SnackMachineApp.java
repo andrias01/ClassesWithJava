@@ -42,5 +42,6 @@ public class SnackMachineApp {
         snackMachine.orderSnacksByAmount();
         snackMachine.getSnacks();
 
+
     }
 }
