@@ -15,6 +15,14 @@ public class SnackMachineApp {
         snackMachine.addSnack("5e","Jumbo",2,8000);
         snackMachine.addSnack("6f","Jet burbuja",8,600);//no lo toma porque hay mas de 6 unidades
         snackMachine.addSnack("7g","Cheese tris",4,1800);
+        snackMachine.addSnack("8h","Papitas",1,1200);
+        snackMachine.addSnack("9i","Bombon",6,500);
+        snackMachine.addSnack("10j","Arequipe",5,3250);
+        snackMachine.addSnack("11k","Paleta",4,300);
+        snackMachine.addSnack("12l","Cheetos",3,2250);
+        snackMachine.addSnack("13m","Quipitos",5,1350);
+        snackMachine.addSnack("14n","Doritos",6,4000);
+        snackMachine.addSnack("15o","Chicle",2,550);
 
         snackMachine.getSnacks();
         snackMachine.getASnackByCode("5e");
@@ -41,7 +49,6 @@ public class SnackMachineApp {
         snackMachine.getSnacks();
         snackMachine.orderSnacksByAmount();
         snackMachine.getSnacks();
-
 
     }
 }

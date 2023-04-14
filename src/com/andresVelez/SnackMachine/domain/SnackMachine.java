@@ -1,8 +1,5 @@
 package com.andresVelez.SnackMachine.domain;
 
-
-import com.andresVelez.ContactBook.domain.Contact;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -27,15 +24,19 @@ public class SnackMachine {
             this.snacks.add(snackToAdd);
             return true;
         }
+        if ((this.snacks.size()+1) > maxSnacks) {
+            System.out.println("No more snacks can be added, it is at its set limit");
+        } else {
+            System.out.println("The amount of '"+snackName+"' you want to put is greater than 6");
+        }
         return false;
     }
 
 
     public Snack getASnackByCode(String snackCode){
-        //Snack snackToReturn = null;
         boolean fingNotfing = false;
         for (Snack snack : this.snacks) {
-            if ((snack.getCode() == snackCode) && snack.getAmount() >= 1) {
+            if ((snackCode.equalsIgnoreCase(snack.getCode())) && snack.getAmount() >= 1) {
                 snack.setAmount(snack.getAmount()-1);
                 snackToReturn = snack;
                 System.out.println("Get the snack '"+snack.getName()+"' successfully !!!!");
@@ -50,10 +51,9 @@ public class SnackMachine {
     }
 
     public Snack getASnackByName(String snackName){
-        //Snack snackToReturn = null;
         boolean fingNotfing = false;
         for (Snack snack : this.snacks) {
-            if ((snack.getName() == snackName) && snack.getAmount() >= 1) {
+            if ((snackName.equalsIgnoreCase(snack.getName())) && snack.getAmount() >= 1) {
                 snack.setAmount(snack.getAmount()-1);
                 snackToReturn = snack;
                 System.out.println("Get the snack '"+snack.getName()+"' successfully !!!!");
@@ -68,10 +68,9 @@ public class SnackMachine {
     }
 
     public Snack addAmountOfSnack(String codeOrName) {
-        //Snack snackToReturn = null;
         boolean fingNotfing = false;
         for (Snack snack : this.snacks) {
-            if ((snack.getCode().equals(codeOrName) || snack.getName().equals(codeOrName)) && (snack.getAmount()+1) <= maxSpacesByProduct) {
+            if ((codeOrName.equalsIgnoreCase(snack.getCode()) || (codeOrName.equalsIgnoreCase(snack.getName()))) && (snack.getAmount()+1) <= maxSpacesByProduct) {
                 snack.setAmount(snack.getAmount() + 1);
                 snackToReturn = snack;
                 System.out.println("Added a unit of snack '"+snack.getName()+"'");
@@ -87,7 +86,6 @@ public class SnackMachine {
 
     public void delateSnack(String snackCode) {
         Snack snack = this.findSnackByCode(snackCode);
-
         if (snack != null) {
             this.snacks.remove(snack);
             System.out.println("The snack name '" + snack.getName() + "' was removed!!.");
@@ -97,9 +95,8 @@ public class SnackMachine {
     }
 
     public Snack getAmountOfProductUnits(String snackCode){
-        //Snack snackToReturn = null;
         for (Snack snack : this.snacks) {
-            if (snack.getCode() == snackCode) {
+            if (snackCode.equalsIgnoreCase(snackCode)) {
                 snackToReturn = snack;
                 System.out.println("The snack '"+snack.getName()+"' was found and their currentAmount is:");
                 System.out.println("CURRENT AMOUNT: "+snack.getAmount());
@@ -110,10 +107,8 @@ public class SnackMachine {
     }
 
     public Snack findSnackByCode(String snackCode) {
-        //Snack snackToReturn = null;
-
         for (Snack snack : this.snacks) {
-            if (snack.getCode() == snackCode) {
+            if (snackCode.equalsIgnoreCase(snack.getCode())) {
                 snackToReturn = snack;
                 System.out.println("The snack was found and their data is:");
                 System.out.println("Code: "+snack.getCode()+" snackName: "+snack.getName()+" snackCost: "+snack.getCost()+"$ currentAmount: "+snack.getAmount());
