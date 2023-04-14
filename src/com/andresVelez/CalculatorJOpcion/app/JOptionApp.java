@@ -37,6 +37,7 @@ public class JOptionApp {
                 case 3 -> showMessage("DIVIDIR");
                 default -> System.exit(0);
             }
+
         }
 
 //        showMessage("Opción elegida " + selectedOption);
