@@ -46,25 +46,18 @@ public class Guayabita {
             switch (selectedOption) {
                 case 0 -> {
                     String nombreJugador1 = dataValidationString(JOptionPane.showInputDialog(null, "Ingresa el nombre del JUGADOR 1"),"Ingresa el nombre del JUGADOR 1");
-//                    String nombreJugador1 = JOptionPane.showInputDialog(null, "Ingresa el nombre del jugador 1");
                     int dineroJugador1 = dataValidationInt("Ingresa el dinero inicial del JUGADOR 1");
-//                    int dineroJugador1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el dinero inicial del jugador 1"));
                     String nombreJugador2 = dataValidationString(JOptionPane.showInputDialog(null, "Ingresa el nombre del JUGADOR 2"),"Ingresa el nombre del JUGADOR 2");
-//                    String nombreJugador2 = JOptionPane.showInputDialog(null, "Ingresa el nombre del jugador 2");
                     int dineroJugador2 = dataValidationInt("Ingresa el dinero inicial del JUGADOR 2");
-//                    int dineroJugador2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el dinero inicial del jugador 2"));
                     int apuesta=0;
-//                    int apuesta = Integer.parseInt(JOptionPane.showInputDialog(null, jugadorEnTurno.getNombre() + " tu tienes: "+ jugadorEnEspera.getDinero() + "\n Cuanto vas a apostar?" ,APP_TITLE_BET));  SI QUIERO METER LA APUESTA POR TECLADO
                     do{
                         apuesta = dataValidationInt("Ingresa la apuesta");
                         if (apuesta>dineroJugador1 || apuesta>dineroJugador2){
                             JOptionPane.showMessageDialog(null, "El pote inicial no puede ser tan grande \nUno o los dos jugadores no tienen suficiente dinero\nPon un pote el cual los jugadores puedan apostar","IMPOSIBLE",JOptionPane.OK_OPTION, APP_ICON_ERROR);
                         }
                     }while (apuesta>dineroJugador1 || apuesta>dineroJugador2);
-//                    int apuesta = dataValidationInt(JOptionPane.showInputDialog(null, "Ingresa la apuesta"),"Ingresa la apuesta");
-//                    int apuesta = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa la apuesta"));
-                    Jugador jugador1 = new Jugador(nombreJugador1, dineroJugador1,APP_ICON_JUGADOR_UNO);
-                    Jugador jugador2 = new Jugador(nombreJugador2, dineroJugador2,APP_ICON_JUGADOR_DOS);
+                    jugador1 = new Jugador(nombreJugador1, dineroJugador1,APP_ICON_JUGADOR_UNO);
+                    jugador2 = new Jugador(nombreJugador2, dineroJugador2,APP_ICON_JUGADOR_DOS);
                     cuadrarApuesta(apuesta,jugador1,jugador2);
 //                    jugador1 = new Jugador("Andres", 1500, APP_ICON_JUGADOR_UNO);
 //                    jugador2 = new Jugador("Alejandro", 1500, APP_ICON_JUGADOR_DOS);
@@ -96,12 +89,26 @@ public class Guayabita {
                     int apuesta=0;
 //                    SI QUIERO METER LA APUESTA POR TECLADO
 //                    int apuesta = Integer.parseInt(JOptionPane.showInputDialog(null, jugadorEnTurno.getNombre() + " tu tienes: "+ jugadorEnEspera.getDinero() + "\n Cuanto vas a apostar?" ,APP_TITLE_BET));
-                    do{
-                        apuesta = (int) JOptionPane.showInputDialog(null, jugadorEnTurno.getNombre() + " tu tienes: "+ jugadorEnEspera.getDinero() + "\n Cuanto vas a apostar?" ,APP_TITLE_BET,0,APP_ICON_JUGADOR_BET,APP_OPTIONS_BET,100);
-                        if (apuesta>this.pote){
-                            JOptionPane.showMessageDialog(null, "No puedes apostar tanto el pote solo tiene "+ this.pote,"NO PUEDES CONTINUAR",JOptionPane.OK_OPTION, APP_ICON_ERROR);
+                    boolean youCanContinuee;
+                    do {
+                        try {
+                            do{
+
+                                apuesta = (int) JOptionPane.showInputDialog(null, jugadorEnTurno.getNombre() + " tu tienes: "+ jugadorEnEspera.getDinero() + "\n Cuanto vas a apostar?" ,APP_TITLE_BET,0,APP_ICON_JUGADOR_BET,APP_OPTIONS_BET,100);
+                                if (apuesta>this.pote){
+                                    JOptionPane.showMessageDialog(null, "No puedes apostar tanto el pote solo tiene "+ this.pote,"NO PUEDES CONTINUAR",JOptionPane.OK_OPTION, APP_ICON_ERROR);
+                                }
+                                if (jugadorEnTurno.getDinero()<apuesta){
+                                    JOptionPane.showMessageDialog(null, "No puedes apostar tanto, no tienes suficiente dinero tu tienes "+ jugadorEnTurno.getDinero() + "\nY intentas apostar "+ apuesta,"NO PUEDES CONTINUAR",JOptionPane.OK_OPTION, APP_ICON_ERROR);
+                                }
+                            }while (apuesta>this.pote && jugadorEnTurno.getDinero()<apuesta);
+                            youCanContinuee = true;
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "No puedes cancelar en este momento "+ jugadorEnTurno.getNombre()+ "\nDebes apostar algo","NO PUEDES CANCELAR",JOptionPane.OK_OPTION, APP_ICON_ERROR);
+                            youCanContinuee = false;
+                            //showMessage(String.valueOf(e));
                         }
-                    }while (apuesta > this.pote);
+                    } while (!youCanContinuee);
 
                     Dado dado2 = new Dado();
                     int resultado2 = dado2.tirar();

@@ -11,8 +11,6 @@ public class GuayabitaApp {
     public static void main(String[] args) {
         Guayabita guayabita = new Guayabita();
         guayabita.showMessageMain();
-
-
     }
 
 }
