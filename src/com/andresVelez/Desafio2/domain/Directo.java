@@ -1,5 +1,7 @@
 package com.andresVelez.Desafio2.domain;
 
+import com.andresVelez.Desafio2.exception.invalidPayrollValueException;
+
 public class Directo extends Empleado {
     private long salario;
 
@@ -24,4 +26,13 @@ public class Directo extends Empleado {
     public long calcularSalario() {
         return salario - calcularAporte();
     }
+
+    @Override
+    public void validata() {
+        if (this.salario < 0){
+            throw new invalidPayrollValueException(nombre+" Esta nomina es invalida su valor es negativo "+ salario + "$ revisar denuevo");
+        }
+
+    }
+
 }

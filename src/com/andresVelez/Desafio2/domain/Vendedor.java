@@ -1,5 +1,7 @@
 package com.andresVelez.Desafio2.domain;
 
+import com.andresVelez.Desafio2.exception.badSellerException;
+
 public class Vendedor extends Directo{
     private long ventasDelMes;
 
@@ -13,6 +15,14 @@ public class Vendedor extends Directo{
             return (long) (ventasDelMes * 0.045);
         } else {
             return (long) (ventasDelMes * 0.035);
+        }
+    }
+
+    @Override
+    public void validata() {
+        int maximoVentas = 40_000_000;
+        if (this.ventasDelMes <= maximoVentas){
+            throw new badSellerException(nombre + " Eres un mal vendedor. No superastes los "+maximoVentas+" de pesos");
         }
     }
 

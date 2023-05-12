@@ -13,4 +13,9 @@ public class Freelance extends Empleado{
     public long calcularSalario() {
         return valorHora * horasTrabajadas;
     }
+
+    @Override
+    public void validata() {
+
+    }
 }

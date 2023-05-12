@@ -8,4 +8,5 @@ public abstract class Empleado {
     }
 
     public abstract long calcularSalario();
+    public abstract void validata();
 }

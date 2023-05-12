@@ -41,6 +41,38 @@ public class Nomina {
             }
         }
     }
+    public void listarPromotores() {
+        System.out.println("Empleados Promotores:");
+        for (Empleado empleado : empleados) {
+            if (empleado instanceof Promotor) {
+                System.out.println(empleado.nombre);
+            }
+        }
+    }
+    public void validataNomina(){
+        for (Empleado empleado : empleados){
+            long salario = empleado.calcularSalario();
+            if (empleado instanceof Vendedor){
+                try {
+                    empleado.validata();
+                }catch (RuntimeException ex){
+                    System.out.println(ex);
+                }
+            }
+            if (salario <= 0){
+                try {
+                    if (empleado instanceof Promotor){
+                        System.out.println("hola");
+                    }
+                    empleado.validata();
+                }catch (RuntimeException exx){
+                    System.out.println(exx);
+                }
+            }
+
+        }
+
+    }
 
     public void setEmpleados(Empleado empleado) {
         empleados.add(empleado);
